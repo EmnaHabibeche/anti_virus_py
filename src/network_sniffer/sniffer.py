@@ -1,42 +1,31 @@
-import logging
-from scapy.all import sniff, IP
-from network_sniffer.network_packet import NetworkPacket  # Import the NetworkPacket class
+from scapy.all import sniff
+from database import save_packet  # Import save_packet to store captured packets
+from datetime import datetime
 
-# Disable scapy's verbose logging to keep the output clean
-logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-
-def ip_in_range(ip, start_ip, end_ip):
-    """Check if an IP is within a given range."""
-    ip_parts = list(map(int, ip.split('.')))
-    start_parts = list(map(int, start_ip.split('.')))
-    end_parts = list(map(int, end_ip.split('.')))
-    return start_parts <= ip_parts <= end_parts
-
-def packet_handler(packet, start_ip, end_ip):
+def packet_callback(packet):
     """
-    Processes each captured packet.
-    Only processes packets where the source or destination IP is in the given range.
+    Callback function to handle each captured packet.
     """
-    if IP in packet:
-        src_ip = packet[IP].src
-        dst_ip = packet[IP].dst
-        if ip_in_range(src_ip, start_ip, end_ip) or ip_in_range(dst_ip, start_ip, end_ip):
-            # Create a NetworkPacket object to represent the captured packet
-            network_packet = NetworkPacket(data=bytes(packet))
-            print(f"Captured Packet: {network_packet}")
+    data = str(packet)  # Convert the packet to a string representation
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Current timestamp
+
+    print(f"Captured packet: {data} at {timestamp}")
+
+    # Save the captured packet to the database
+    save_packet(data, timestamp)
 
 def capture_packets(start_ip, end_ip, interface=None, packet_count=0):
     """
-    Sniffs packets on a specific network interface and filters by a range of IP addresses.
+    Capture network packets and save them to the database.
     """
     print(f"Starting packet capture on interface: {interface or 'default'}")
-    print(f"Capturing packets from IP range: {start_ip} to {end_ip}")
+    print(f"Capturing packets from IP range: {start_ip} to {end_ip}...")
 
-    # Capture packets and process only those within the IP range
+    # Start sniffing packets
     sniff(
-        iface=interface,         # Interface to sniff on (None means default)
-        prn=lambda pkt: packet_handler(pkt, start_ip, end_ip),  # Pass the packet to the handler
-        count=packet_count,      # Number of packets to capture (0 = infinite)
-        store=False              # Don't store packets in memory (saves RAM)
+        iface=interface,  # Network interface to listen on
+        prn=packet_callback,  # Callback function for each packet
+        count=packet_count if packet_count > 0 else 10  # Limit or infinite packets
     )
- 
+
+    print("Finished capturing packets.")
