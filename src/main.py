@@ -1,8 +1,10 @@
 import sys
 import os
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QPushButton, QTableView
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtSql import QSqlDatabase, QSqlTableModel
+import sqlite3
 
 # Step 1: Add the project root (anti folder) to Python's path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -42,12 +44,37 @@ def main():
     start_ip_input = main_window.findChild(QLineEdit, "start_ip_input")  # Input for starting IP
     end_ip_input = main_window.findChild(QLineEdit, "end_ip_input")  # Input for ending IP
     scan_button = main_window.findChild(QPushButton, "scan_button")  # Scan button
+    table_view = main_window.findChild(QTableView, "table_view")  # Table view for displaying packets
 
-    # Step 7: Connect the scan button to the start_scan function
+    # Step 7: Set up the database model and connect it to the table view
+    setup_table_view(table_view)
+
+    # Step 8: Connect the scan button to the start_scan function
     scan_button.clicked.connect(lambda: start_scan(start_ip_input, end_ip_input, capture_packets, get_all_packets))
 
-    # Step 8: Run the application event loop
+    # Step 9: Run the application event loop
     sys.exit(app.exec_())
+
+def setup_table_view(table_view):
+    """
+    This function sets up the QSqlTableModel and connects it to the QTableView.
+    """
+    # Create a connection to the SQLite database
+    db = QSqlDatabase.addDatabase('QSQLITE')
+    db.setDatabaseName('antivirus.db')
+
+    if not db.open():
+        QMessageBox.critical(None, "Database Error", "Failed to open the database.")
+        return
+
+    # Create the table model and set the table name
+    model = QSqlTableModel()
+    model.setTable('packets')
+    model.setEditStrategy(QSqlTableModel.OnFieldChange)  # Allows editing in the table
+    model.select()  # Retrieve data from the table
+
+    # Set the model on the QTableView
+    table_view.setModel(model)
 
 @pyqtSlot()
 def start_scan(start_ip_input, end_ip_input, capture_packets, get_all_packets):
@@ -76,3 +103,4 @@ def start_scan(start_ip_input, end_ip_input, capture_packets, get_all_packets):
 
 if __name__ == "__main__":
     main()
+
