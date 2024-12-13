@@ -2,30 +2,21 @@ import sys
 import os
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QLineEdit, QPushButton, QTableView
 from PyQt5.uic import loadUi
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot, QTimer
 from PyQt5.QtSql import QSqlDatabase, QSqlTableModel
 import sqlite3
 
-# Step 1: Add the project root (anti folder) to Python's path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def main():
-    # Import necessary modules from src
     from src.network_sniffer.sniffer import capture_packets  # Import the capture function
     from src.database import init_db, get_all_packets  # Import database functions
 
-    """
-    Main entry point for the packet sniffing application with a graphical interface.
-    """
-
-    # Step 2: Initialize the database
     init_db()
 
-    # Step 3: Create the application and main window
     app = QApplication(sys.argv)
     main_window = QMainWindow()
 
-    # Step 4: Load the UI file
     ui_path = os.path.join(os.path.dirname(__file__), "ui", "ui_main.ui")
     if not os.path.exists(ui_path):
         QMessageBox.critical(None, "Error", f"UI file not found: {ui_path}")
@@ -37,22 +28,19 @@ def main():
         QMessageBox.critical(None, "Error", f"Failed to load UI file: {e}")
         sys.exit(1)
 
-    # Step 5: Show the main window
     main_window.show()
 
-    # Step 6: Get references to the widgets in the UI
     start_ip_input = main_window.findChild(QLineEdit, "start_ip_input")  # Input for starting IP
     end_ip_input = main_window.findChild(QLineEdit, "end_ip_input")  # Input for ending IP
     scan_button = main_window.findChild(QPushButton, "scan_button")  # Scan button
     table_view = main_window.findChild(QTableView, "table_view")  # Table view for displaying packets
 
-    # Step 7: Set up the database model and connect it to the table view
-    setup_table_view(table_view)
+    # Set up the table view and get the model
+    model = setup_table_view(table_view)
 
-    # Step 8: Connect the scan button to the start_scan function
-    scan_button.clicked.connect(lambda: start_scan(start_ip_input, end_ip_input, capture_packets, get_all_packets))
+    # Connect the scan button to start_scan
+    scan_button.clicked.connect(lambda: start_scan(start_ip_input, end_ip_input, capture_packets, model))
 
-    # Step 9: Run the application event loop
     sys.exit(app.exec_())
 
 def setup_table_view(table_view):
@@ -65,19 +53,28 @@ def setup_table_view(table_view):
 
     if not db.open():
         QMessageBox.critical(None, "Database Error", "Failed to open the database.")
-        return
+        return None
+
+    # Clear the packets table at the start
+    conn = sqlite3.connect('antivirus.db')
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM packets")
+    conn.commit()
+    conn.close()
 
     # Create the table model and set the table name
     model = QSqlTableModel()
     model.setTable('packets')
     model.setEditStrategy(QSqlTableModel.OnFieldChange)  # Allows editing in the table
-    model.select()  # Retrieve data from the table
+    model.select()  # Initialize with no data
 
     # Set the model on the QTableView
     table_view.setModel(model)
 
+    return model
+
 @pyqtSlot()
-def start_scan(start_ip_input, end_ip_input, capture_packets, get_all_packets):
+def start_scan(start_ip_input, end_ip_input, capture_packets, model):
     """
     This function is triggered when the 'Scan' button is clicked. It retrieves the IP addresses
     from the input fields and starts the packet sniffing process.
@@ -91,16 +88,26 @@ def start_scan(start_ip_input, end_ip_input, capture_packets, get_all_packets):
         QMessageBox.warning(None, "Input Error", "Please enter both start and end IP addresses.")
         return
 
-    # Start the packet capture
+    # Clear the table view
+    conn = sqlite3.connect('antivirus.db')
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM packets")
+    conn.commit()
+    conn.close()
+    model.select()  # Refresh the view
+
+    # Start the packet capture (in real-time updates)
     print(f"Starting packet capture from {start_ip} to {end_ip}...")
     capture_packets(start_ip=start_ip, end_ip=end_ip, interface=None, packet_count=0)
 
-    # Display the results (optional)
-    packets = get_all_packets()
-    print("Packets stored in the database:")
-    for packet in packets:
-        print(packet)
+    # Use a timer to refresh the model periodically
+    timer = QTimer()
+    timer.timeout.connect(model.select)
+    timer.start(1000)  # Refresh every 1 second
+
+    QMessageBox.information(None, "Scan Started", "Packet capture started successfully.")
 
 if __name__ == "__main__":
     main()
+
 
