@@ -2410,6 +2410,53 @@ QPushButton:disabled {
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
+                       <item>
+                        <widget class="QPushButton" name="bn_android_contact">
+                         <property name="minimumSize">
+                          <size>
+                           <width>80</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>80</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>Contact</string>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
+	border: none;
+	background-color: rgba(0,0,0,0);
+}
+QPushButton:hover {
+	background-color: rgb(91,90,90);
+}
+QPushButton:pressed {	
+	background-color: rgba(0,0,0,0);
+}</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>icons/1x/bookAsset 57.png</normaloff>icons/1x/bookAsset 57.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>13</width>
+                           <height>16</height>
+                          </size>
+                         </property>
+                         <property name="flat">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
                       </layout>
                      </widget>
                     </item>
@@ -2449,6 +2496,53 @@ QPushButton:disabled {
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
+                       <item>
+                        <widget class="QPushButton" name="bn_android_game">
+                         <property name="minimumSize">
+                          <size>
+                           <width>80</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>80</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>GamePad</string>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
+	border: none;
+	background-color: rgba(0,0,0,0);
+}
+QPushButton:hover {
+	background-color: rgb(91,90,90);
+}
+QPushButton:pressed {	
+	background-color: rgba(0,0,0,0);
+}</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>icons/1x/gameAsset 61.png</normaloff>icons/1x/gameAsset 61.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>20</width>
+                           <height>13</height>
+                          </size>
+                         </property>
+                         <property name="flat">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
                       </layout>
                      </widget>
                     </item>
@@ -2488,6 +2582,47 @@ QPushButton:disabled {
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
+                       <item>
+                        <widget class="QPushButton" name="bn_android_clean">
+                         <property name="minimumSize">
+                          <size>
+                           <width>80</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>80</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>Clean</string>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
+	border: none;
+	background-color: rgba(0,0,0,0);
+}
+QPushButton:hover {
+	background-color: rgb(91,90,90);
+}
+QPushButton:pressed {	
+	background-color: rgba(0,0,0,0);
+}</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>icons/1x/cleanAsset 59.png</normaloff>icons/1x/cleanAsset 59.png</iconset>
+                         </property>
+                         <property name="flat">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
                       </layout>
                      </widget>
                     </item>
@@ -2527,6 +2662,47 @@ QPushButton:disabled {
                        <property name="bottomMargin">
                         <number>0</number>
                        </property>
+                       <item>
+                        <widget class="QPushButton" name="bn_android_world">
+                         <property name="minimumSize">
+                          <size>
+                           <width>80</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>80</width>
+                           <height>30</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>World</string>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">QPushButton {
+	border: none;
+	background-color: rgba(0,0,0,0);
+}
+QPushButton:hover {
+	background-color: rgb(91,90,90);
+}
+QPushButton:pressed {	
+	background-color: rgba(0,0,0,0);
+}</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>icons/1x/worldAsset 60.png</normaloff>icons/1x/worldAsset 60.png</iconset>
+                         </property>
+                         <property name="flat">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
                       </layout>
                      </widget>
                     </item>
@@ -2549,7 +2725,7 @@ QPushButton:disabled {
                  <item>
                   <widget class="QStackedWidget" name="stackedWidget_android">
                    <property name="styleSheet">
-                    <string notr="true">background:rgb(192,192,192);</string>
+                    <string notr="true">background:rgb(91,90,90);</string>
                    </property>
                    <property name="currentIndex">
                     <number>2</number>
@@ -3393,14 +3569,7 @@ QScrollBar::sub-page:vertical {
                      <property name="spacing">
                       <number>5</number>
                      </property>
-                     <item row="0" column="3">
-                      <widget class="QLineEdit" name="start_ip_input">
-                       <property name="styleSheet">
-                        <string notr="true">background:rgb(220,220,220);</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="4">
+                     <item row="0" column="5">
                       <spacer name="horizontalSpacer_7">
                        <property name="orientation">
                         <enum>Qt::Horizontal</enum>
@@ -3413,6 +3582,390 @@ QScrollBar::sub-page:vertical {
                        </property>
                       </spacer>
                      </item>
+                     <item row="0" column="0">
+                      <widget class="QGroupBox" name="groupBox_clean">
+                       <property name="minimumSize">
+                        <size>
+                         <width>250</width>
+                         <height>300</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>250</width>
+                         <height>300</height>
+                        </size>
+                       </property>
+                       <property name="sizeIncrement">
+                        <size>
+                         <width>0</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Segoe UI</family>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QGroupBox{
+	border:1px solid rgb(51,51,51);	
+	border-radius:4px;
+	color:white;
+	background:rgb(91,90,90);
+}
+</string>
+                       </property>
+                       <property name="title">
+                        <string>Review</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                       </property>
+                       <property name="flat">
+                        <bool>false</bool>
+                       </property>
+                       <property name="checkable">
+                        <bool>false</bool>
+                       </property>
+                       <layout class="QVBoxLayout" name="verticalLayout_12">
+                        <item>
+                         <widget class="QRadioButton" name="radioButton">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>9</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QRadioButton {
+	background:rgb(91,90,90);
+    color:white;
+}
+QRadioButton::indicator {
+    width:10px;
+    height:10px;
+    border-radius: 7px;
+}
+QRadioButton::indicator:checked {
+    background-color:rgb(0,143,170);
+    border: 2px solid rgb(51,51,51);
+}
+
+QRadioButton::indicator:unchecked {
+    background-color:rgb(91,90,90);
+    border:2px solid rgb(51,51,51);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>Clean History</string>
+                          </property>
+                          <property name="autoRepeat">
+                           <bool>false</bool>
+                          </property>
+                          <property name="autoExclusive">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QRadioButton" name="radioButton_2">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>9</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QRadioButton {
+	background:rgb(91,90,90);
+    color:white;
+}
+QRadioButton::indicator {
+    width:10px;
+    height:10px;
+    border-radius: 7px;
+}
+QRadioButton::indicator:checked {
+    background-color:rgb(0,143,170);
+    border: 2px solid rgb(51,51,51);
+}
+
+QRadioButton::indicator:unchecked {
+    background-color:rgb(91,90,90);
+    border:2px solid rgb(51,51,51);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>Clean Password</string>
+                          </property>
+                          <property name="autoExclusive">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QRadioButton" name="radioButton_3">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>9</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QRadioButton {
+	background:rgb(91,90,90);
+    color:white;
+}
+QRadioButton::indicator {
+    width:10px;
+    height:10px;
+    border-radius: 7px;
+}
+QRadioButton::indicator:checked {
+    background-color:rgb(0,143,170);
+    border: 2px solid rgb(51,51,51);
+}
+
+QRadioButton::indicator:unchecked {
+    background-color:rgb(91,90,90);
+    border:2px solid rgb(51,51,51);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>Clean Chache</string>
+                          </property>
+                          <property name="autoExclusive">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QRadioButton" name="radioButton_4">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>9</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QRadioButton {
+	background:rgb(91,90,90);
+    color:white;
+}
+QRadioButton::indicator {
+    width:10px;
+    height:10px;
+    border-radius: 7px;
+}
+QRadioButton::indicator:checked {
+    background-color:rgb(0,143,170);
+    border: 2px solid rgb(51,51,51);
+}
+
+QRadioButton::indicator:unchecked {
+    background-color:rgb(91,90,90);
+    border:2px solid rgb(51,51,51);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>Clean Bookmarks</string>
+                          </property>
+                          <property name="autoExclusive">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>9</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QCheckBox {
+    color:rgb(255,255,255);
+}
+
+QCheckBox::indicator {
+    width: 10px;
+    height: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+    border:2px solid rgb(51,51,51);
+	background:rgb(91,90,90);
+}
+
+QCheckBox::indicator:unchecked:pressed {
+	border:2px solid rgb(51,51,51);
+   	background:rgb(0,143,170);
+}
+
+QCheckBox::indicator:checked {
+	background-color:rgb(0,143,170);
+    border: 2px solid rgb(51,51,51);
+}
+
+QCheckBox::indicator:checked:pressed {
+    border:2px solid rgb(51,51,51);
+	background:rgb(91,90,90);
+}
+
+</string>
+                          </property>
+                          <property name="text">
+                           <string>Did you liked the UI</string>
+                          </property>
+                          <property name="tristate">
+                           <bool>false</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_4">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>9</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QCheckBox {
+    color:rgb(255,255,255);
+}
+
+QCheckBox::indicator {
+    width: 10px;
+    height: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+    border:2px solid rgb(51,51,51);
+	background:rgb(91,90,90);
+}
+
+QCheckBox::indicator:unchecked:pressed {
+	border:2px solid rgb(51,51,51);
+   	background:rgb(0,143,170);
+}
+
+QCheckBox::indicator:checked {
+	background-color:rgb(0,143,170);
+    border: 2px solid rgb(51,51,51);
+}
+
+QCheckBox::indicator:checked:pressed {
+    border:2px solid rgb(51,51,51);
+	background:rgb(91,90,90);
+}
+
+</string>
+                          </property>
+                          <property name="text">
+                           <string>Did you like the Color Scheme</string>
+                          </property>
+                          <property name="tristate">
+                           <bool>false</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_2">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>9</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QCheckBox {
+    color:rgb(255,255,255);
+}
+
+QCheckBox::indicator {
+    width: 10px;
+    height: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+    border:2px solid rgb(51,51,51);
+	background:rgb(91,90,90);
+}
+
+QCheckBox::indicator:unchecked:pressed {
+	border:2px solid rgb(51,51,51);
+   	background:rgb(0,143,170);
+}
+
+QCheckBox::indicator:checked {
+	background-color:rgb(0,143,170);
+    border: 2px solid rgb(51,51,51);
+}
+
+QCheckBox::indicator:checked:pressed {
+    border:2px solid rgb(51,51,51);
+	background:rgb(91,90,90);
+}
+
+</string>
+                          </property>
+                          <property name="text">
+                           <string>Did you like Custome Buttons</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_3">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>9</pointsize>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QCheckBox {
+    color:rgb(255,255,255);
+}
+
+QCheckBox::indicator {
+    width: 10px;
+    height: 10px;
+}
+
+QCheckBox::indicator:unchecked {
+    border:2px solid rgb(51,51,51);
+	background:rgb(91,90,90);
+}
+
+QCheckBox::indicator:unchecked:pressed {
+	border:2px solid rgb(51,51,51);
+   	background:rgb(0,143,170);
+}
+
+QCheckBox::indicator:checked {
+	background-color:rgb(0,143,170);
+    border: 2px solid rgb(51,51,51);
+}
+
+QCheckBox::indicator:checked:pressed {
+    border:2px solid rgb(51,51,51);
+	background:rgb(91,90,90);
+}
+
+</string>
+                          </property>
+                          <property name="text">
+                           <string>Did you like the Stacked Window</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
                      <item row="0" column="1" rowspan="2" colspan="2">
                       <widget class="QLabel" name="lab_clean">
                        <property name="styleSheet">
@@ -3423,7 +3976,7 @@ QScrollBar::sub-page:vertical {
                        </property>
                       </widget>
                      </item>
-                     <item row="4" column="0">
+                     <item row="2" column="0" rowspan="2">
                       <spacer name="verticalSpacer_5">
                        <property name="orientation">
                         <enum>Qt::Vertical</enum>
@@ -3436,54 +3989,107 @@ QScrollBar::sub-page:vertical {
                        </property>
                       </spacer>
                      </item>
-                     <item row="1" column="3">
-                      <widget class="QLineEdit" name="end_ip_input">
-                       <property name="styleSheet">
-                        <string notr="true">background:rgb(220,220,220);</string>
+                     <item row="0" column="3">
+                      <widget class="QGroupBox" name="groupBox">
+                       <property name="minimumSize">
+                        <size>
+                         <width>250</width>
+                         <height>300</height>
+                        </size>
                        </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_11">
-                       <property name="mouseTracking">
-                        <bool>false</bool>
+                       <property name="maximumSize">
+                        <size>
+                         <width>250</width>
+                         <height>300</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Segoe UI</family>
+                         <pointsize>9</pointsize>
+                        </font>
                        </property>
                        <property name="styleSheet">
-                        <string notr="true">QLabel {
-    color: black; /* Change text color */
-background:rgb(220,220,220);}
+                        <string notr="true">QGroupBox{
+	border:1px solid rgb(51,51,51);	
+	border-radius:4px;
+	color:white;
+	background:rgb(91,90,90);
+}
 </string>
                        </property>
-                       <property name="text">
-                        <string>IP start</string>
+                       <property name="title">
+                        <string>Sliders</string>
                        </property>
+                       <layout class="QGridLayout" name="gridLayout_6">
+                        <item row="0" column="0">
+                         <widget class="QSlider" name="horizontalSlider_2">
+                          <property name="styleSheet">
+                           <string notr="true">QSlider::groove:horizontal {
+    height:5px;
+    background: rgb(51,51,51);
+}
+
+QSlider::handle:horizontal {
+    background:rgb(0,143,170);
+    width: 10px;
+margin:-8px 0
+}
+
+QSlider::add-page:horizondal {
+    background:rgb(51,51,51);
+}
+
+QSlider::sub-page:horizondal {
+    background:rgb(51,51,51);
+}</string>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="2">
+                         <widget class="QSlider" name="verticalSlider">
+                          <property name="styleSheet">
+                           <string notr="true">QSlider::groove:vertical {
+    background: red;
+    width:5px
+}
+
+QSlider::handle:vertical {
+    height: 10px;
+    background:rgb(0,143,170);
+	margin:0 -8px
+}
+
+QSlider::add-page:vertical {
+    background:rgb(51,51,51);
+}
+
+QSlider::sub-page:vertical {
+    background:rgb(51,51,51);
+}</string>
+                          </property>
+                          <property name="tracking">
+                           <bool>true</bool>
+                          </property>
+                          <property name="orientation">
+                           <enum>Qt::Vertical</enum>
+                          </property>
+                          <property name="invertedAppearance">
+                           <bool>false</bool>
+                          </property>
+                          <property name="invertedControls">
+                           <bool>false</bool>
+                          </property>
+                          <property name="tickPosition">
+                           <enum>QSlider::NoTicks</enum>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
                       </widget>
-                     </item>
-                     <item row="1" column="0">
-                      <widget class="QLabel" name="label_12">
-                       <property name="styleSheet">
-                        <string notr="true">QLabel {
-    color: black; /* Change text color */
-background:rgb(220,220,220);}
-</string>
-                       </property>
-                       <property name="text">
-                        <string>IP finish</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="3">
-                      <widget class="QPushButton" name="scan_button">
-                       <property name="styleSheet">
-                        <string notr="true">background:rgb(220,220,220);</string>
-                       </property>
-                       <property name="text">
-                        <string>Scan</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="3" colspan="2">
-                      <widget class="QTableView" name="table_view"/>
                      </item>
                     </layout>
                    </widget>

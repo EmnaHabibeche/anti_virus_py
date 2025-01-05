@@ -76,36 +76,50 @@ def setup_table_view(table_view):
 @pyqtSlot()
 def start_scan(start_ip_input, end_ip_input, capture_packets, model):
     """
-    This function is triggered when the 'Scan' button is clicked. It retrieves the IP addresses
-    from the input fields and starts the packet sniffing process.
+    Triggered when the 'Scan' button is clicked.
+    Starts packet sniffing and refreshes the table view periodically.
     """
-    # Get the IP addresses from the input fields
     start_ip = start_ip_input.text()
     end_ip = end_ip_input.text()
 
-    # Validate IP addresses (simple check)
     if not start_ip or not end_ip:
         QMessageBox.warning(None, "Input Error", "Please enter both start and end IP addresses.")
         return
 
-    # Clear the table view
+    # Clear the table before starting the scan
     conn = sqlite3.connect('antivirus.db')
     cursor = conn.cursor()
     cursor.execute("DELETE FROM packets")
     conn.commit()
     conn.close()
-    model.select()  # Refresh the view
+    model.select()
 
-    # Start the packet capture (in real-time updates)
-    print(f"Starting packet capture from {start_ip} to {end_ip}...")
-    capture_packets(start_ip=start_ip, end_ip=end_ip, interface=None, packet_count=0)
+    # Start packet capture in a separate thread (non-blocking)
+    from threading import Thread
+    def run_sniffer():
+        capture_packets(start_ip=start_ip, end_ip=end_ip, interface=None, packet_count=0)
+    sniffer_thread = Thread(target=run_sniffer, daemon=True)
+    sniffer_thread.start()
 
-    # Use a timer to refresh the model periodically
+    # Refresh the table model periodically
     timer = QTimer()
     timer.timeout.connect(model.select)
-    timer.start(1000)  # Refresh every 1 second
+    timer.start(1000)
 
     QMessageBox.information(None, "Scan Started", "Packet capture started successfully.")
+def analyze_packet(packet):
+    """
+    Analyze a captured packet for potential viruses using the EICAR test signature.
+    """
+    EICAR_SIGNATURE = "X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*"
+
+    # Example: Extract payload from the packet (update based on actual packet structure)
+    payload = bytes(packet.payload)
+
+    # Check if the EICAR signature exists in the payload
+    if EICAR_SIGNATURE.encode() in payload:
+        return True
+    return False
 
 if __name__ == "__main__":
     main()
