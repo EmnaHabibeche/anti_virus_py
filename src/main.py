@@ -5,6 +5,10 @@ from PyQt5.uic import loadUi
 from PyQt5.QtCore import pyqtSlot, QTimer
 from PyQt5.QtSql import QSqlDatabase, QSqlTableModel
 import sqlite3
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+import os
+import platform
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -33,6 +37,7 @@ def main():
     start_ip_input = main_window.findChild(QLineEdit, "start_ip_input")  # Input for starting IP
     end_ip_input = main_window.findChild(QLineEdit, "end_ip_input")  # Input for ending IP
     scan_button = main_window.findChild(QPushButton, "scan_button")  # Scan button
+    generate_report_button = main_window.findChild(QPushButton, "generate_report_button")  # Generate report button
     table_view = main_window.findChild(QTableView, "table_view")  # Table view for displaying packets
 
     # Set up the table view and get the model
@@ -40,6 +45,9 @@ def main():
 
     # Connect the scan button to start_scan
     scan_button.clicked.connect(lambda: start_scan(start_ip_input, end_ip_input, capture_packets, model))
+
+    # Connect the generate report button to the generate_report function
+    generate_report_button.clicked.connect(lambda: generate_report_action(model))
 
     sys.exit(app.exec_())
 
@@ -107,19 +115,57 @@ def start_scan(start_ip_input, end_ip_input, capture_packets, model):
     timer.start(1000)
 
     QMessageBox.information(None, "Scan Started", "Packet capture started successfully.")
-def analyze_packet(packet):
-    """
-    Analyze a captured packet for potential viruses using the EICAR test signature.
-    """
-    EICAR_SIGNATURE = "X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*"
 
-    # Example: Extract payload from the packet (update based on actual packet structure)
-    payload = bytes(packet.payload)
+def generate_report_action(model):
+    """
+    Generate the report when the 'Generate Report' button is clicked.
+    """
+    # Example: Get the data from the table model for the report
+    detection_results = []
+    for row in range(model.rowCount()):
+        packet = model.record(row)
+        detection_results.append(f"Packet {packet.value('id')}: {packet.value('source_ip')} -> {packet.value('destination_ip')}")
 
-    # Check if the EICAR signature exists in the payload
-    if EICAR_SIGNATURE.encode() in payload:
-        return True
-    return False
+    analysis_summary = "This is a summary of the virus detection analysis."
+
+    # Specify the file path where the report will be saved
+    file_path = "antivirus_report.pdf"
+
+    # Generate the report PDF
+    generate_report(file_path, analysis_summary, detection_results)
+
+    QMessageBox.information(None, "Report Generated", f"The report has been generated and saved as {file_path}.")
+
+    # Open the PDF automatically
+    if platform.system() == "Windows":
+        os.startfile(file_path)
+    elif platform.system() == "Darwin":  # macOS
+        os.system(f"open {file_path}")
+    else:  # Linux
+        os.system(f"xdg-open {file_path}")
+
+def generate_report(file_path, analysis_summary, detection_results):
+    """
+    Generate a PDF report summarizing the analysis and detection results.
+    """
+    c = canvas.Canvas(file_path, pagesize=letter)
+    c.setFont("Helvetica", 12)
+
+    # Title
+    c.drawString(200, 750, "Rapport d'Analyse Antivirus")
+
+    # Analysis Summary
+    c.drawString(50, 700, f"Résumé de l'analyse: {analysis_summary}")
+
+    # Detection Results
+    y_position = 650
+    c.drawString(50, y_position, "Résultats de détection :")
+    for result in detection_results:
+        y_position -= 20
+        c.drawString(50, y_position, f"- {result}")
+
+    # Save PDF
+    c.save()
 
 if __name__ == "__main__":
     main()

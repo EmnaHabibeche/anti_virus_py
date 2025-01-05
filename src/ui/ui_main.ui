@@ -3485,6 +3485,13 @@ background:rgb(220,220,220);}
                      <item row="4" column="3" colspan="2">
                       <widget class="QTableView" name="table_view"/>
                      </item>
+                     <item row="3" column="4">
+                      <widget class="QPushButton" name="generate_report_button">
+                       <property name="text">
+                        <string>generate pdf report</string>
+                       </property>
+                      </widget>
+                     </item>
                     </layout>
                    </widget>
                    <widget class="QWidget" name="page_android_world">
