@@ -2,6 +2,8 @@ from scapy.all import sniff
 from database import save_packet  # Import save_packet to store captured packets
 from datetime import datetime
 from scapy.layers.inet import IP
+from encryption import encrypt_file
+
 
 def packet_callback(packet):
     """
@@ -25,12 +27,15 @@ def analyze_packet(packet):
     Analyze a captured packet for potential viruses using the EICAR test signature.
     """
     EICAR_SIGNATURE = "X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*"
-
-    # Example: Extract payload from the packet (update based on actual packet structure)
     payload = bytes(packet.payload)
 
-    # Check if the EICAR signature exists in the payload
     if EICAR_SIGNATURE.encode() in payload:
+        # Save and encrypt the malicious file
+        file_path = f"malicious_files/malicious_{datetime.now().strftime('%Y%m%d_%H%M%S')}.bin"
+        with open(file_path, "wb") as malicious_file:
+            malicious_file.write(payload)
+        encrypt_file(file_path)
+        print(f"Malicious file encrypted: {file_path}")
         return True
     return False
 
